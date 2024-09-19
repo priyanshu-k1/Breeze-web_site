@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breeze</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link  rel="icon" type="image/png" href="resource/sky.png">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body >
+    <div class="popup_window" id="popup_window">
+      <i class="fa fa-close closeicon" id="closeicon" style="font-size:16px" onclick="closeAndOpenPopUP()"></i>
+      <div class="container_popUp">
+        <h2 >Enter the Api key</h2>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Key from openWeather map" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Save</button>
+        </form>
+        <a id="apikeynotthere" href="https://openweathermap.org/api" target="_blank">Don't have Api key?</a>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="resource/sky.png" id="logoimg"/>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search location" aria-label="Search">
+              <button class="btn btn-outline-success">Search </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="wrapper">
+        <div class="cardWeather">
+            <img src="resource/sky.png" class="card-img-top">
+            <div class="card-body">
+              <p class="card-text">weather description</p>
+            </div>
+        </div>
+        <div class="moreDetailsCard">
+
+        </div>
+      </div>
+
+
+      <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">Powered by <i class="fa fa-sun-o" style="font-size:16px"></i>OpenWeatherMap</span>
+          </div>
+      
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-muted" href="https://www.instagram.com/why.not.priyanshuuuu/" target="_blank"><i class="fa fa-instagram" style="font-size:24px"></i></a></li>
+            <li class="ms-3"><a class="text-muted" href="https://github.com/priyanshu-k1" target="_blank"><i class="fa fa-github" style="font-size:24px"></i></svg></a></li>
+            <li class="ms-3"><a class="text-muted" onclick="letsChat()"><i class="fa fa-telegram" style="font-size:24px"></i></svg></a></li>
+          </ul>
+        </footer>
+      </div>
+
+
+
+    
+</body>
+</html>
