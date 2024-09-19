@@ -7,14 +7,163 @@ var counter= 0
 
 function closeAndOpenPopUP(){
     const popUpWindow=document.getElementById("popup_window")
-    if(counter==0){
-        popUpWindow.style.display="block"
+    if (counter == 0) {
+        popUpWindow.classList.add("show"); // Add class to show popup
         counter++;
-
-    }
-    else{
-        popUpWindow.style.display="none";
-        counter--
+    } else {
+        popUpWindow.classList.remove("show"); // Remove class to hide popup
+        counter--;
     }
     
+}
+
+
+
+
+function setImages(description) {
+    const imgHolder = document.getElementById("logoimg");
+
+    switch (description) {
+        case "sunny":
+        case "clear sky":
+            imgHolder.src = "resource/sunny_clearsky.png";
+            break;
+
+        case "few clouds":
+            imgHolder.src = "resource/cloudy.png";
+            break;
+
+        case "scattered clouds":
+        case "broken clouds":
+            imgHolder.src = "resource/storm.png";
+            break;
+
+        case "overcast clouds":
+            imgHolder.src = "resource/over_cast.png";
+            break;
+
+        case "light rain":
+        case "light intensity drizzle":
+        case "drizzle":
+        case "heavy intensity drizzle":
+        case "light intensity drizzle rain":
+        case "drizzle rain":
+        case "heavy intensity drizzle rain":
+            imgHolder.src = "resource/light_rain.png";
+            break;
+
+        case "moderate rain":
+            imgHolder.src = "resource/rain.png";
+            break;
+
+        case "heavy intensity rain":
+        case "heavy rain":
+        case "extreme rain":
+        case "very heavy rain":
+        case "freezing rain":
+            imgHolder.src = "resource/storm.png";
+            break;
+
+        case "thunderstorm with light rain":
+        case "thunderstorm with rain":
+        case "thunderstorm with heavy rain":
+        case "light thunderstorm":
+        case "heavy thunderstorm":
+            imgHolder.src = "resource/thunder_with_rain.png";
+            break;
+
+        case "light snow":
+        case "snow":
+        case "heavy snow":
+        case "sleet":
+        case "light shower sleet":
+        case "shower sleet":
+        case "light rain and snow":
+        case "rain and snow":
+            imgHolder.src = "resource/snow.png";
+            break;
+
+        case "mist":
+        case "fog":
+        case "haze":
+            imgHolder.src = "resource/mist.png";
+            break;
+
+        case "squalls":
+        case "tornado":
+        case "tropical storm":
+        case "hurricane":
+            imgHolder.src = "resource/tornado_without_rain.png";
+            break;
+
+        case "cold":
+            imgHolder.src = "resource/cold.png";
+            break;
+
+        case "hot":
+            imgHolder.src = "resource/hot.png";
+            break;
+
+        case "windy":
+            imgHolder.src = "resource/windy.png";
+            break;
+
+        case "hail":
+            imgHolder.src = "resource/hail.png";
+            break;
+
+        default:
+            imgHolder.src = "resource/broken_image.png";
+            break;
+    }
+}
+const key = 'myKey';
+const weatherData = document.getElementById('weatherData');
+function loadData(){
+    try {
+        const value = localStorage.getItem(key);
+        if (value === null) {
+          throw new Error();
+        }
+      } catch (error) {
+        weatherData.innerHTML = "No data available";
+        console.log(`Key '${key}' does not exist in Local Storage`);
+      }
+       
+
+}
+  
+window.onload(loadData())
+
+
+
+const apiKey = '';  
+
+// Function to fetch weather data
+function getWeather() {
+    const city = document.getElementById('locationInputBox').value;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    // Fetch weather data
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("City not found");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display the weather data
+            const weatherData = document.getElementById('weatherData');
+            weatherData.innerHTML = `
+                <h2>Weather in ${data.name}, ${data.sys.country}</h2>
+                <p>Temperature: ${data.main.temp}°C</p>
+                <p>Weather: ${data.weather[0].description}</p>
+                <p>Humidity: ${data.main.humidity}%</p>
+                <p>Wind Speed: ${data.wind.speed} m/s</p>
+            `;
+        })
+        .catch(error => {
+            document.getElementById('weatherData').innerHTML = `<p>${error.message}</p>`;
+        });
 }

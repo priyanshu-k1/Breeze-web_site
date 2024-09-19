@@ -26,15 +26,15 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="resource/sky.png" id="logoimg"/>
+            <img src="resource/sky.png" id="logoimg" alt="Weather Icon"/>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="d-flex" role="search">
-              <input class="form-control me-2" placeholder="Search location" aria-label="Search">
-              <button class="btn btn-outline-success" id="locationSaveButton" onclick="closeAndOpenPopUP()" type="button">Search </button>
+              <input class="form-control me-2" placeholder="Search location" aria-label="Search" id="locationInputBox">
+              <button class="btn btn-outline-success" id="locationSaveButton" onclick="getWeather()" type="button">Search </button>
             </form>
           </div>
         </div>
@@ -47,6 +47,7 @@
             </div>
         </div>
         <div class="moreDetailsCard">
+          <p id="weatherData">hello</p>
 
         </div>
       </div>
