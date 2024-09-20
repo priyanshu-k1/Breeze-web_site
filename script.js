@@ -1,5 +1,6 @@
 
 const closeButton=document.getElementById("closeicon")
+var apikeyFromOWM;
 function letsChat(){
     window.open("https://t.me/Priyanshuk_01",'_blank'); 
 }
@@ -21,7 +22,7 @@ function closeAndOpenPopUP(){
 
 
 function setImages(description) {
-    const imgHolder = document.getElementById("logoimg");
+    const imgHolder = document.getElementById("weatherDescriptionImage");
 
     switch (description) {
         case "sunny":
@@ -30,12 +31,12 @@ function setImages(description) {
             break;
 
         case "few clouds":
-            imgHolder.src = "resource/cloudy.png";
+            imgHolder.src = "resource/few_clouds.png";
             break;
 
         case "scattered clouds":
         case "broken clouds":
-            imgHolder.src = "resource/storm.png";
+            imgHolder.src = "resource/broken_cloud.png";
             break;
 
         case "overcast clouds":
@@ -61,7 +62,7 @@ function setImages(description) {
         case "extreme rain":
         case "very heavy rain":
         case "freezing rain":
-            imgHolder.src = "resource/storm.png";
+            imgHolder.src = "resource/heavy_rain.png";
             break;
 
         case "thunderstorm with light rain":
@@ -132,18 +133,41 @@ function loadData(){
        
 
 }
+function saveData(){
+    const locationInputBox=document.getElementById("apiInputBox");
+    if(locationInputBox.value!='' || locationInputBox.value!=""|| (locationInputBox.value).length>10){
+        localStorage.setItem('apiKey',locationInputBox.value)
+    }
+    else{
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+        if (toastTrigger) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+            toastBootstrap.show()
+    }
+}
+}
+function checkApiKey() {
+    var apiKey = localStorage.getItem('apiKey');
+    const popUpWindow=document.getElementById("popup_window")
+    if (apiKey) {
+        apikeyFromOWM=apiKey
+        // getWeatherOnLoad(localStorage.getItem("lastLocation"))
+    } else {
+        popUpWindow.classList.add("show");
+    }
+  }
   
-window.onload(loadData())
-
-
-
-const apiKey = '';  
-
+document.addEventListener('DOMContentLoaded', function() {
+    checkApiKey();
+  });
+function capitalizeFirstLetter(str) {
+    if (!str) return ''; // Handle empty string
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 // Function to fetch weather data
-function getWeather() {
-    const city = document.getElementById('locationInputBox').value;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
+function fetchTheData(url){
     // Fetch weather data
     fetch(url)
         .then(response => {
@@ -155,10 +179,14 @@ function getWeather() {
         .then(data => {
             // Display the weather data
             const weatherData = document.getElementById('weatherData');
+            const cityNameElement=document.getElementById("cityName");
+            const cityTempElement=document.getElementById("TemperatureTemplate");
+            const cityDescElement=document.getElementById("weatherDescription");
+            cityNameElement.innerHTML=`${data.name}, ${data.sys.country}`
+            cityTempElement.innerHTML= `${data.main.temp}°C`
+            cityDescElement.innerHTML= `${data.weather[0].description}`
+            setImages(`${data.weather[0].description}`)
             weatherData.innerHTML = `
-                <h2>Weather in ${data.name}, ${data.sys.country}</h2>
-                <p>Temperature: ${data.main.temp}°C</p>
-                <p>Weather: ${data.weather[0].description}</p>
                 <p>Humidity: ${data.main.humidity}%</p>
                 <p>Wind Speed: ${data.wind.speed} m/s</p>
             `;
@@ -166,4 +194,18 @@ function getWeather() {
         .catch(error => {
             document.getElementById('weatherData').innerHTML = `<p>${error.message}</p>`;
         });
+}
+
+function getWeather(){
+    apiKey=apikeyFromOWM;
+    const city = document.getElementById('locationInputBox').value;
+    localStorage.setItem("lastLocation",city)
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${capitalizeFirstLetter(city).trim()}&appid=${apiKey.trim()}&units=metric`;
+
+    fetchTheData(url)    
+}
+function getWeatherOnLoad(city){
+    apiKey=apikeyFromOWM;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${capitalizeFirstLetter(city).trim()}&appid=${apiKey.trim()}&units=metric`;
+    fetchTheData(url)    
 }

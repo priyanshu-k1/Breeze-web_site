@@ -18,24 +18,37 @@
     margin-top:2vh;
     gap:3vw;
     padding:2vw;
-    background-color:var(--color-one);
+    background-color:var(--color-two);
 }
 .cardWeather{
     padding: 10px;
     height:var(--card_height);
     width:var(--card_width);
     border-radius: var(--card_border_radius);
-    background-color: var(--color-three);
+    background-color: var(--color-one);
 }
 .card-text{
     margin-top:10px;
     text-align: center;
+    color: var(--color-three);
 }
 .moreDetailsCard{
+    padding: 20px;;
     width: 70vw;
     height:var(--card_height);
     background-color: var(--color-three);
     border-radius: var(--card_border_radius);
+    overflow: hidden;
+}
+.moreWeatherCard,.AqiCard{
+    border-radius:9px;
+    margin-top:10px;
+    width:100%;
+    height:48%;
+    background-color: aqua;
+}
+.innercard{
+    
 }
 .popup_window{
     display: block;

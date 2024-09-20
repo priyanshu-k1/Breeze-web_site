@@ -17,8 +17,8 @@
       <div class="container_popUp">
         <h2 >Enter the Api key</h2>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Key from openWeather map" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Save</button>
+          <input class="form-control me-2" id="apiInputBox" type="search" placeholder="Key from openWeather map" aria-label="Search">
+          <button class="btn btn-outline-success" id="saveApiButton" type="submit" onclick="saveData()">Save</button>
         </form>
         <a id="apikeynotthere" href="https://openweathermap.org/api" target="_blank">Don't have Api key?</a>
       </div>
@@ -41,14 +41,39 @@
       </nav>
       <div class="wrapper">
         <div class="cardWeather">
-            <img src="resource/sky.png" class="card-img-top">
+            <h2 class="card-text" id="cityName">City Name</h2>
+            <img src="resource/sky.png" class="card-img-top" id="weatherDescriptionImage">
             <div class="card-body">
-              <p class="card-text">weather description</p>
+              <h3 class="card-text" id="weatherDescription">weather description</h3>
+              <h2 class="card-text" id="TemperatureTemplate">Temperature</h2>
             </div>
         </div>
         <div class="moreDetailsCard">
-          <p id="weatherData">hello</p>
+          <div class="moreWeatherCard">
+            <div class="innercard"></div>
+            <div class="innercard"></div>
+            <div class="innercard"></div>
+            <div class="innercard"></div>
+          </div>
+          <div class="AqiCard">
+            <div class="innercard"></div>
+            <div class="innercard"></div>
+            <div class="innercard"></div>
+            <div class="innercard"></div>
+          </div>
+        </div>
+      </div>
 
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>Now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Please enter a valid Api key.
+          </div>
         </div>
       </div>
 
