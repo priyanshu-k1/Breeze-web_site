@@ -7,12 +7,30 @@
     --color-one:#203A75;
     --color-two:#506FB2;
     --color-three:#f2eee1;
-  }
-#logoimg{
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--color-two); 
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #085f36; 
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background:var(--color-one); 
+}
+
+#logoimg {
     width:4vw;
     height:8vh;
 }
-.wrapper{
+
+.wrapper {
     min-height: 100vh;
     display: flex;
     margin-top:2vh;
@@ -20,37 +38,68 @@
     padding:2vw;
     background-color:var(--color-two);
 }
-.cardWeather{
+
+.cardWeather {
     padding: 10px;
     height:var(--card_height);
     width:var(--card_width);
     border-radius: var(--card_border_radius);
     background-color: var(--color-one);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
-.card-text{
+
+.card-text {
     margin-top:10px;
     text-align: center;
     color: var(--color-three);
 }
-.moreDetailsCard{
-    padding: 20px;;
+
+.moreDetailsCard {
+    padding: 20px;
     width: 70vw;
     height:var(--card_height);
     background-color: var(--color-three);
     border-radius: var(--card_border_radius);
     overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
-.moreWeatherCard,.AqiCard{
+
+.moreWeatherCard, .AqiCard {
+    padding:6px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap:1%;
     border-radius:9px;
     margin-top:10px;
     width:100%;
     height:48%;
-    background-color: aqua;
 }
-.innercard{
-    
+
+.innercard {
+    padding:10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width:23%;
+    height:100%;
+    background-color:#ffffff;
+    border-radius:5px;
 }
-.popup_window{
+
+.moreDetailsCardImg {
+    height:60%;
+    width:80%;
+}
+
+.moreDetailsCardH5, .moreDetailsCardH6 {
+    text-align: center;
+}
+
+.popup_window {
     display: block;
     position:absolute;
     width:30vw;
@@ -62,31 +111,35 @@
     transform: translate(-50%, -50%);
     border-radius:8px;
     padding:10px;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(255, 255, 255, 0.18);
     opacity: 0; /* Initially hidden */
     visibility: hidden; /* Hide the popup to remove it from the flow */
     transition: opacity 0.5s ease, visibility 0.5s ease;
-
 }
+
 .popup_window.show {
     opacity: 1; /* Show the popup */
     visibility: visible; /* Make the popup visible */
 }
-.closeicon{
+
+.closeicon {
     float: right;
 }
-#apikeynotthere{
+
+#apikeynotthere {
     margin-top:3px;
     color: var(--color-one);
     font-size: 12px;
 }
-#apikeynotthere:hover{
+
+#apikeynotthere:hover {
     color:red;
     transition: .5s;
 }
-.container_popUp{
+
+.container_popUp {
     width:100%;
     height:100%;
     display:flex;
@@ -95,4 +148,75 @@
     flex-direction: column;
 }
 
+/* Responsive Design */
 
+/* Extra small devices (phones, up to 576px) */
+@media (max-width: 576px) {
+    .wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        gap: 10px;
+    }
+    .cardWeather, .moreDetailsCard, .moreWeatherCard {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Small devices (tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 768px) {
+    .wrapper {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5vw;
+    }
+    .cardWeather, .moreDetailsCard {
+        width: 90%;
+    }
+}
+
+/* Medium devices (small laptops, 768px and up) */
+@media (min-width: 768px) and (max-width: 992px) {
+    .wrapper {
+        flex-direction: row;
+        justify-content: center;
+        background-color: var(--color-two);
+    }
+    .cardWeather {
+        width: 40%;
+    }
+    .moreDetailsCard {
+        width: 60%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1200px) {
+    .wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .cardWeather {
+        width: var(--card_width);
+    }
+    .moreDetailsCard {
+        width: 70vw;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .wrapper {
+        justify-content: space-evenly;
+        gap: 2vw;
+    }
+    .cardWeather {
+        width: var(--card_width);
+    }
+    .moreDetailsCard {
+        width: 65vw;
+    }
+}
