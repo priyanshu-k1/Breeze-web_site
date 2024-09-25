@@ -29,18 +29,20 @@
     height:8vh;
 }
 .wrapper{
-    min-height: 100vh;
+    min-height: 87vh;
     display: flex;
-    margin-top:2vh;
-    gap:3vw;
-    padding:2vw;
-    background-color:var(--color-two);
+    justify-content: center; /* Center cards */
+    gap: 2vw;
+    padding: 2vw;
+    background-color: var(--color-two);
+    flex-direction: row;
   
 }
 .cardWeather{
     padding: 10px;
-    height:var(--card_height);
-    width:var(--card_width);
+    height: auto; /* Allow the height to adjust based on content */
+    width: 100%; /* Full width in smaller screens */
+    max-width: var(--card_width); /* Max width for larger screens */
     border-radius: var(--card_border_radius);
     background-color: var(--color-one);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -71,6 +73,7 @@
     height:48%;
 }
 .innercard{
+   
     padding:10px;
     overflow: hidden;
     display: flex;
@@ -82,10 +85,13 @@
     height:100%;
     background-color:#ffffff;
     border-radius:5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .moreDetailsCardImg{
-    height:60%;
+    margin-top:2vh;
+    height:58%;
     width:80%;
+    
 }
 .moreDetailsCardH5,.moreDetailsCardH6{
     text-align: center;
@@ -96,7 +102,7 @@
     width:30vw;
     height:25vh;
     background-color:#ffffff;
-    z-index: 1;
+    z-index:9999;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -139,6 +145,7 @@
 /* Extra small devices (phones, up to 576px) */
 @media (max-width: 576px) {
     .wrapper{
+        /* flex-wrap: wrap; */
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -159,29 +166,80 @@
     } */
     
   }
-  
   /* Small devices (tablets, 576px and up) */
   @media (min-width: 576px) and (max-width: 768px) {
     .wrapper{
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        background-color: red;
         flex-direction: column;
+    }
+    .popup_window {
+        width: 80vw; /* Adjust width for mobile */
+        height: auto; /* Allow height to adjust based on content */
+        padding: 20px;
     }
   }
   
+@media (max-width: 768px) {
+    .cardWeather {
+        max-width: 90vw; /* Take almost full width on smaller screens */
+        height: auto; /* Adjust height */
+        margin: 10px 0; /* Add some space between cards */
+    }
+
+    .wrapper {
+        flex-wrap: wrap;
+        gap: 1vw; /* Decrease gap between cards */
+        padding: 2vh 5vw; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Media Queries for Very Small Screens (Mobile) */
+@media (max-width: 480px) {
+    .cardWeather {
+        max-width: 95vw; /* Almost full width on mobile */
+        padding: 15px; /* Add padding for mobile */
+    }
+}
 
 
+@media (max-width: 768px) {
+    .cardWeather {
+        max-width: 90vw; /* Take almost full width on smaller screens */
+        height: auto; /* Adjust height */
+        margin: 10px 0; /* Add some space between cards */
+    }
+
+    .wrapper {
+        flex-wrap: wrap;
+        gap: 2vw; /* Decrease gap between cards */
+        padding: 2vh 5vw; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Media Queries for Very Small Screens (Mobile) */
+@media (max-width: 480px) {
+    .cardWeather {
+        max-width: 95vw; /* Almost full width on mobile */
+        padding: 15px; /* Add padding for mobile */
+    }
+    .wrapper {
+        flex-direction: column;
+    }
+}
   /* Medium devices (small laptops, 768px and up) */
   @media (min-width: 768px) and (max-width: 992px) {
+    .cardWeather {
+        max-width: 95vw; /* Almost full width on mobile */
+        padding: 15px; /* Add padding for mobile */
+    }
     .wrapper{
-        background-color: #085f36;
-       }
- 
-  }
-  
-  /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) and (max-width: 1200px) {
+        flex-wrap: wrap;
+    }
 
+    .moreDetailsCard{
+        padding:3px;
+    }
   }
   

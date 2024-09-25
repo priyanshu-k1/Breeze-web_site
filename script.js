@@ -1,5 +1,3 @@
-
-const closeButton=document.getElementById("closeicon")
 var apikeyFromOWM;
 var latitudeOfArea;
 var longitudeOfArea;
@@ -162,6 +160,7 @@ function checkApiKey() {
   
 document.addEventListener('DOMContentLoaded', function() {
     checkApiKey();
+    document.getElementById("closeicon").addEventListener("click", closeAndOpenPopUP);
     fetchGeoCoordinate(apikeyFromOWM,localStorage.getItem("lastLocation"));
   });
 function capitalizeFirstLetter(str) {
@@ -196,7 +195,7 @@ function fetchTheData(url){
 }
 
 async function fetchGeoCoordinate(key,city){
-    const geocodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${key}`;
+    const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${key}`;
     try {
         const response = await fetch(geocodeUrl);
     
