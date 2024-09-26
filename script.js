@@ -1,6 +1,8 @@
 var apikeyFromOWM;
 var latitudeOfArea;
 var longitudeOfArea;
+const screenWidth = window.innerWidth;
+console.log("Current screen width: " + screenWidth + "px");
 function letsChat(){
     window.open("https://t.me/Priyanshuk_01",'_blank'); 
 }
@@ -157,7 +159,11 @@ function checkApiKey() {
         popUpWindow.classList.add("show");
     }
   }
-  
+  //Adding function to make cross icon red on hover but its not working..
+  //have to fix it bitch and I dont know how should I fix it........
+document.getElementById("closeicon").addEventListener('mouseover',function(){
+    document.getElementById("closeicon").style.backgroundColor="red"
+});
 document.addEventListener('DOMContentLoaded', function() {
     checkApiKey();
     document.getElementById("closeicon").addEventListener("click", closeAndOpenPopUP);

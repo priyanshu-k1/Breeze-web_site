@@ -40,7 +40,7 @@
 }
 .cardWeather{
     padding: 10px;
-    height: auto; /* Allow the height to adjust based on content */
+    height:10vh;
     width: 100%; /* Full width in smaller screens */
     max-width: var(--card_width); /* Max width for larger screens */
     border-radius: var(--card_border_radius);
@@ -113,7 +113,7 @@
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     opacity: 0; /* Initially hidden */
     visibility: hidden; /* Hide the popup to remove it from the flow */
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 1.5s ease, visibility 0.5s ease;
 
 }
 .popup_window.show {
@@ -144,6 +144,9 @@
 
 /* Extra small devices (phones, up to 576px) */
 @media (max-width: 576px) {
+    .popup_window{
+        width: 50vw;
+    }
     .wrapper{
         /* flex-wrap: wrap; */
         flex-direction: column;
@@ -168,6 +171,7 @@
   }
   /* Small devices (tablets, 576px and up) */
   @media (min-width: 576px) and (max-width: 768px) {
+
     .wrapper{
         flex-wrap: wrap;
         justify-content: center;
@@ -175,8 +179,8 @@
         flex-direction: column;
     }
     .popup_window {
-        width: 80vw; /* Adjust width for mobile */
-        height: auto; /* Allow height to adjust based on content */
+        width: 100vw; /* Adjust width for mobile */
+        height: 30vh; /* Allow height to adjust based on content */
         padding: 20px;
     }
   }
@@ -185,7 +189,7 @@
     .cardWeather {
         max-width: 90vw; /* Take almost full width on smaller screens */
         height: auto; /* Adjust height */
-        margin: 10px 0; /* Add some space between cards */
+        margin: 10px; /* Add some space between cards */
     }
 
     .wrapper {
@@ -194,15 +198,6 @@
         padding: 2vh 5vw; /* Adjust padding for smaller screens */
     }
 }
-
-/* Media Queries for Very Small Screens (Mobile) */
-@media (max-width: 480px) {
-    .cardWeather {
-        max-width: 95vw; /* Almost full width on mobile */
-        padding: 15px; /* Add padding for mobile */
-    }
-}
-
 
 @media (max-width: 768px) {
     .cardWeather {
@@ -217,8 +212,6 @@
         padding: 2vh 5vw; /* Adjust padding for smaller screens */
     }
 }
-
-/* Media Queries for Very Small Screens (Mobile) */
 @media (max-width: 480px) {
     .cardWeather {
         max-width: 95vw; /* Almost full width on mobile */
@@ -242,4 +235,3 @@
         padding:3px;
     }
   }
-  
